@@ -1,7 +1,29 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void SelectSort(){
+//пока в процессе, не продуман момент сохранения прежнего значения
+//стоит подумать над началом поиска элемента
+//сразу не менять данные лучше
+void SelectSort(int massive_orig[], int n){
+    
+    for (int i = 0; i<n; i++){
+        int min_el = massive_orig[0];
+
+        for(int j=1; j<n; j++){
+
+            int temp = massive_orig[j];
+
+            if(min_el>temp){
+                
+                min_el = temp;
+                massive_orig[i] = massive_orig[j];
+            }
+        }        
+    }
+
+    for (int d=0; d<n; d++){
+        printf("%d", massive_orig[d]);
+    }
     
 }
 
@@ -31,6 +53,9 @@ int main(){
     int massive[size];
 
     Random_massive(massive, size, min, max);
+
+    printf("Массив после SelectSort: \n");
+    SelectSort(massive, size);
 
     
     
