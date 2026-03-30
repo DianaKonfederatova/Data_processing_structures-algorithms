@@ -28,13 +28,15 @@ int control_sum(int massive[], int n){
 }
 
 
-void SelectSort(int massive_orig[], int n){
+void SelectSort(int massive_orig[], int n, int* cs, int* cc){
+    
     
     for (int i = 0; i<n; i++){
 
         int min_index = i;
         
         for(int j=i+1; j<n; j++){
+            (*cc)++;
 
             if(massive_orig[min_index]>massive_orig[j]){
 
@@ -42,9 +44,13 @@ void SelectSort(int massive_orig[], int n){
             }
         }
 
-        int temp = massive_orig[i];
-        massive_orig[i]=massive_orig[min_index];
-        massive_orig[min_index] = temp;       
+        if (min_index != i) {
+            (*cs)+=3;  
+            
+            int temp = massive_orig[i];
+            massive_orig[i] = massive_orig[min_index];
+            massive_orig[min_index] = temp;       
+        }     
       
     }
 }
@@ -59,6 +65,8 @@ int main(){
     int size;
     int min;
     int max;
+    int counter_shipment = 0;
+    int counter_comparison = 0;
     printf("Введите количество элементов массива:\n");
     scanf("%d", &size);
     printf("Введите минимальное значаение массива:\n");
@@ -81,7 +89,7 @@ int main(){
     printf("\n\n");
     
     printf("Массив после SelectSort: \n");
-    SelectSort(massive, size);
+    SelectSort(massive, size, &counter_shipment, &counter_comparison);
     for (int i = 0; i<size; i++){
         printf("%d ", massive[i]);
     }
@@ -90,5 +98,21 @@ int main(){
     printf("Контрольная сумма после сортировки: %d\n", control_sum_after);
     int series_after = count_series(massive, size);
     printf("Количество серий после сортировки: %d\n", series_after);
+    printf("\n\n");
+    
+    printf("Фактическое количество сравнений: %d\n", counter_comparison);
+    printf("Фактическое количество пересылок: %d\n", counter_shipment);
+    printf("\n\n");
+
+    int M = 3*(size-1);
+    int C = ((size*size) - size)/2;
+
+    printf("Теоретическое количество сравнений: %d\n", C);
+    printf("Теоретическое количество пересылок: %d\n", M);
+
+
+
+    
+
     
 }
