@@ -61,12 +61,77 @@ void Random_massive(int massive[], int size, int min, int max){
     }
 }
 
+void Increase_massive(int massive[], int size, int min){
+    for(int i = 0; i<size; i++){
+        massive[i] = min + i;
+    }
+}
+
+void Decrease_massive(int massive[], int size, int max){
+    for(int i = 0; i<size; i++){
+        massive[i] = max - i;
+    }
+}
+
+void Test(const char* name, int massive[], int size){
+    int counter_shipment = 0;
+    int counter_comparison = 0;
+
+    printf("%s\n", name);
+    printf("До сортировки:\n");
+    for (int i = 0; i<size; i++){
+        printf("%d ", massive[i]);
+    }
+
+    printf("\n");
+
+    int control_sum_befor = control_sum(massive, size);
+    printf("Контрольная сумма до сортировки: %d\n", control_sum_befor);
+    int series_befor = count_series(massive, size);
+    printf("Количество серий до сортировки: %d\n", series_befor);
+    printf("\n\n");
+
+    SelectSort(massive, size, &counter_shipment, &counter_comparison);
+
+    printf("После сортировки:\n");
+    for (int i = 0; i<size; i++){
+        printf("%d ", massive[i]);
+    }
+
+    printf("\n");
+
+    int control_sum_after = control_sum(massive, size);
+    printf("Контрольная сумма после сортировки: %d\n", control_sum_after);
+    int series_after = count_series(massive, size);
+    printf("Количество серий после сортировки: %d\n", series_after);
+    printf("\n\n");
+
+    printf("ХАРАКТЕРИСТИКИ МЕТОДА ПРЯМОГО ВЫБОРА\n");
+    printf("Фактическое количество сравнений: %d\n", counter_comparison);
+    printf("Фактическое количество пересылок: %d\n", counter_shipment);
+    int T_fact = counter_comparison + counter_shipment;
+    printf("Трудоемкость фактическая: %d", T_fact);
+
+    printf("\n\n");
+
+    int M = 3*(size-1);
+    int C = ((size*size) - size)/2;
+
+    printf("Теоретическое количество сравнений: %d\n", C);
+    printf("Теоретическое количество пересылок: %d\n", M);
+    int T_teor = C + M;
+    printf("Трудоемкость теоретическая: %d", T_teor);
+    printf("\n\n");
+
+}
+
+
 int main(){
     int size;
     int min;
     int max;
-    int counter_shipment = 0;
-    int counter_comparison = 0;
+
+
     printf("Введите количество элементов массива:\n");
     scanf("%d", &size);
     printf("Введите минимальное значаение массива:\n");
@@ -76,43 +141,16 @@ int main(){
     int massive[size];
     printf("\n\n");
 
-    printf("Массив до сортировки:\n");
+    printf("Исследование SelectSort (n = %d)\n", size);
+    
+    Increase_massive(massive, size, min);
+    Test("ВОЗРАСТАЮЩИЙ", massive, size);
+
+    Decrease_massive(massive, size, max);
+    Test("УБЫВАЮЩИЙ", massive, size);
+
     Random_massive(massive, size, min, max);
-    for (int i = 0; i<size; i++){
-        printf("%d ", massive[i]);
-    }
-    printf("\n");
-    int control_sum_befor = control_sum(massive, size);
-    printf("Контрольная сумма до сортировки: %d\n", control_sum_befor);
-    int series_befor = count_series(massive, size);
-    printf("Количество серий до сортировки: %d\n", series_befor);
-    printf("\n\n");
-    
-    printf("Массив после SelectSort: \n");
-    SelectSort(massive, size, &counter_shipment, &counter_comparison);
-    for (int i = 0; i<size; i++){
-        printf("%d ", massive[i]);
-    }
-    printf("\n");
-    int control_sum_after = control_sum(massive, size);
-    printf("Контрольная сумма после сортировки: %d\n", control_sum_after);
-    int series_after = count_series(massive, size);
-    printf("Количество серий после сортировки: %d\n", series_after);
-    printf("\n\n");
-    
-    printf("Фактическое количество сравнений: %d\n", counter_comparison);
-    printf("Фактическое количество пересылок: %d\n", counter_shipment);
-    printf("\n\n");
+    Test("ИЗ СЛУЧАЙНЫХ ЧИСЕЛ", massive, size);    
 
-    int M = 3*(size-1);
-    int C = ((size*size) - size)/2;
-
-    printf("Теоретическое количество сравнений: %d\n", C);
-    printf("Теоретическое количество пересылок: %d\n", M);
-
-
-
-    
-
-    
+    return 0;
 }
