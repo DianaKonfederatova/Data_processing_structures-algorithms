@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 int count_series(int massive[], int size){
     int number_of_episodes = 0;
@@ -43,7 +44,7 @@ void SelectSort(int massive_orig[], int n, int* cs, int* cc){
                 min_index = j; 
             }
         }
-
+        /*
         //это условие убирать, если рассматривать не усовершенствованный код
         if (min_index != i) {
             (*cs)+=3;  
@@ -52,15 +53,15 @@ void SelectSort(int massive_orig[], int n, int* cs, int* cc){
             massive_orig[i] = massive_orig[min_index];
             massive_orig[min_index] = temp;       
         }     
-
+        */
         //эту часть добалять, если смотреть первоначальную, не усовершенствованную версию кода
-        /*
+        
         (*cs)+=3;
         
         int temp = massive_orig[i];
         massive_orig[i] = massive_orig[min_index];
         massive_orig[min_index] = temp;
-        */
+        
       
     }
 }
@@ -137,6 +138,7 @@ void Test(const char* name, int massive[], int size){
 
 
 int main(){
+    srand(time(NULL));
     int size;
     int min;
     int max;
