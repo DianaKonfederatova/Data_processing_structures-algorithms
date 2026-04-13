@@ -83,7 +83,11 @@ void test_random(const char* name, int massive[], int size){
     printf("Количество серий до сортировки: %d\n", series_befor);
     printf("\n\n");
 
+    clock_t start_time = clock();
     BubbleSort(massive, size, &counter_shipment, &counter_comparison);
+    clock_t end_time = clock();
+
+    double time_spent = (double)(end_time - start_time) / CLOCKS_PER_SEC;
 
     printf("--------------------\n");
     printf("После сортировки:\n");
@@ -113,6 +117,8 @@ void test_random(const char* name, int massive[], int size){
     int T_teor = C + M;
     printf("Трудоемкость теоретическая: %d\n", T_teor);
 
+    printf("Время выполнения: %.6f сек (или %.3f мс)\n", time_spent, time_spent * 1000);
+
     printf("\n");
 }
 
@@ -136,7 +142,11 @@ void test_increase(const char* name, int massive[], int size){
     printf("Количество серий до сортировки: %d\n", series_befor);
     printf("\n\n");
 
+    clock_t start_time = clock();
     BubbleSort(massive, size, &counter_shipment, &counter_comparison);
+    clock_t end_time = clock();
+
+    double time_spent = (double)(end_time - start_time) / CLOCKS_PER_SEC;
 
     printf("--------------------\n");
     printf("После сортировки:\n");
@@ -166,6 +176,8 @@ void test_increase(const char* name, int massive[], int size){
     int T_teor = C + M;
     printf("Трудоемкость теоретическая: %d\n", T_teor);
 
+    printf("Время выполнения: %.6f сек (или %.3f мс)\n", time_spent, time_spent * 1000);
+
     printf("\n");
 
 }
@@ -191,7 +203,11 @@ void test_decrease(const char* name, int massive[], int size){
     printf("Количество серий до сортировки: %d\n", series_befor);
     printf("\n\n");
 
+    clock_t start_time = clock();
     BubbleSort(massive, size, &counter_shipment, &counter_comparison);
+    clock_t end_time = clock();
+
+    double time_spent = (double)(end_time - start_time) / CLOCKS_PER_SEC;
 
     printf("--------------------\n");
     printf("После сортировки:\n");
@@ -220,6 +236,8 @@ void test_decrease(const char* name, int massive[], int size){
     printf("Теоретическое количество пересылок: %d\n", M);
     int T_teor = C + M;
     printf("Трудоемкость теоретическая: %d\n", T_teor);
+
+    printf("Время выполнения: %.6f сек (или %.3f мс)\n", time_spent, time_spent * 1000);
 
     printf("\n");
 }
