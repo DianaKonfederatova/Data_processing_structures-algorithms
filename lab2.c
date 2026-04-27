@@ -57,7 +57,7 @@ void BubbleSort(int massive_orig[], int n, int* cs, int* cc){
                 int temp = massive_orig[i];
                 massive_orig[i] = massive_orig[i-1];
                 massive_orig[i-1] = temp;
-                (*cs)++; 
+                (*cs)+=3; 
             }
         }
     }  
