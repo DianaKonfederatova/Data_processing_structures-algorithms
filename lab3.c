@@ -51,7 +51,9 @@ void Decrease_massive(int massive[], int size, int max){
 void ShakerSort(int massive[], int n, int* cs, int* cc){
     int L = 0;
     int R = n-1;
-    while(L<R){
+    int f = 1;
+    while(L<R && f){
+        f = 0;
 
         for (int i = R; i>L; i--){
             (*cc)++;
@@ -61,6 +63,7 @@ void ShakerSort(int massive[], int n, int* cs, int* cc){
                 massive[i] = massive[i-1];
                 massive[i-1] = temp;
                 (*cs)+=3;
+                f = 1;
             }
         }
         L++;
@@ -71,7 +74,8 @@ void ShakerSort(int massive[], int n, int* cs, int* cc){
                 int temp = massive[j];
                 massive[j] = massive[j+1];
                 massive[j+1] = temp;
-                (*cs)+=3; 
+                (*cs)+=3;
+                f = 1; 
             }
         }
         R--;
