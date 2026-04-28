@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
+
+void labor_intensity(const char* name, int n);
 
 int count_series(int massive[], int size){
     int number_of_episodes = 0;
@@ -82,7 +85,7 @@ void Test(const char* name, int massive[], int size){
     printf("\n\n");
 
     clock_t start_time = clock();
-    ShakerSort(massive, size, &counter_shipment, &counter_comparison);
+    InsertionSort(massive, size, &counter_shipment, &counter_comparison);
     clock_t end_time = clock();
 
     double time_spent = (double)(end_time - start_time) / CLOCKS_PER_SEC;
@@ -116,7 +119,7 @@ void Test(const char* name, int massive[], int size){
 void labor_intensity(const char* name, int n) {
     if (strcmp(name, "ВОЗРАСТАЮЩИЙ МАССИВ") == 0) {
         int C = n-1;
-        int M = 0;
+        int M = 2 * (n - 1);
         printf("Теоретическое количество сравнений: %d\n", C);
         printf("Теоретическое количество пересылок: %d\n", M);
         printf("Теоретическая трудоемкость: %d\n", C+M);
@@ -124,7 +127,7 @@ void labor_intensity(const char* name, int n) {
 
     if (strcmp(name, "СЛУЧАЙНЫЙ МАССИВ") == 0) {
         int C = ((n*n)-n)/4;
-        int M = (3*((n*n)-n))/4;
+        int M = (n * n - n) / 4 + (n - 1);
         printf("Теоретическое количество сравнений: %d\n", C);
         printf("Теоретическое количество пересылок: %d\n", M);
         printf("Теоретическая трудоемкость: %d\n", C+M);
@@ -132,7 +135,7 @@ void labor_intensity(const char* name, int n) {
 
     if (strcmp(name, "УБЫВАЮЩИЙ МАССИВ") == 0) {
         int C = ((n*n)-n)/2;
-        int M = (3*((n*n)-n))/2;
+        int M = (n * n - n) / 2 + 2 * n - 2;
         printf("Теоретическое количество сравнений: %d\n", C);
         printf("Теоретическое количество пересылок: %d\n", M);
         printf("Теоретическая трудоемкость: %d\n", C+M);
