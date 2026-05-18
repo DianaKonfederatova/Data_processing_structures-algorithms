@@ -52,18 +52,22 @@ void Decrease_massive(int massive[], int size, int max){
 void InsertionSort(int massive[], int n, int* cs, int* cc){
     for(int i = 1; i<n; i++){
         int temp = massive[i];
+        (*cs)++;
         int j = i-1;
+        int flag = 0;
 
         while(j>=0 && massive[j]>temp){
             (*cc)++;
             massive[j+1] = massive[j];
             (*cs)++;
             j--;
+            flag = 1;
         }
 
-        if (j >= 0) {
+        if(flag == 0 && j >= 0){
             (*cc)++;
         }
+        
         
         massive[j+1] = temp;
         (*cs)++;
