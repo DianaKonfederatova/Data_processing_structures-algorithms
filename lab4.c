@@ -53,13 +53,17 @@ void InsertionSort(int massive[], int n, int* cs, int* cc){
     for(int i = 1; i<n; i++){
         int temp = massive[i];
         int j = i-1;
+
         while(j>=0 && massive[j]>temp){
             (*cc)++;
             massive[j+1] = massive[j];
             (*cs)++;
             j--;
         }
-        (*cc)++;
+
+        if (j >= 0) {
+            (*cc)++;
+        }
         
         massive[j+1] = temp;
         (*cs)++;
