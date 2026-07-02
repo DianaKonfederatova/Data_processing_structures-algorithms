@@ -1,1 +1,15 @@
+# Compiled files
 *.o
+*.exe
+*.out
+*.obj
+
+# IDE and system
+.DS_Store
+.vscode/
+.idea/
+*.swp
+
+# Python
+__pycache__/
+*.pyc
