@@ -72,8 +72,6 @@ void binary_search_2(int massive[], int n, int* cc, int* x){
     if(massive[R] == *x){
         printf("Элемент %d найден, он на %d месте в массиве\n", *x, R+1);
         flag = 1;
-    }else{
-        printf("Элемент %d не найден\n", *x);
     }
 
     if(flag!=1){

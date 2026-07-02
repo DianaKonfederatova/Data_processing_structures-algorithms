@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
+
 
 void control_sum(int massive[], int n){
     int control_sum_massive = 0;
